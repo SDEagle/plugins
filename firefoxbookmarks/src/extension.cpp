@@ -310,13 +310,7 @@ QWidget *FirefoxBookmarks::Extension::widget(QWidget *parent) {
         for (QString &profileId : groups) {
             profilesIni.beginGroup(profileId);
 
-            // Use name if available else id
-            if ( profilesIni.contains("Name") )
-                cmb->addItem( QString("%1 (%2)").arg(profilesIni.value("Name").toString(), profileId), profileId);
-            else {
-                cmb->addItem(profileId, profileId);
-                qWarning() << qPrintable(QString("Firefox profile '%1' does not contain a name.").arg(profileId));
-            }
+            cmb->addItem(profileId, profileId);
 
             // If the profileId match set the current item of the checkbox
             if (profileId == d->currentProfileId)
